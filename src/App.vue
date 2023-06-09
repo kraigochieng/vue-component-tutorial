@@ -23,6 +23,24 @@
   <CardComponent><h1>Content 1</h1></CardComponent>
   <CardComponent><h2>Content 2</h2></CardComponent>
   <CardComponent><InputComponent/></CardComponent>
+
+  <CardComponent>
+    <template v-slot:header>
+      <h3>Header</h3>
+    </template>
+    <template  v-slot:footer>
+      <h3>Footer</h3>
+    </template>
+  </CardComponent>
+
+  <NamesComponent>
+    <template v-slot:first_name="prop">
+      {{ prop.first_name }},
+    </template> 
+    <template v-slot:last_name="props">
+      {{ props.last_name }}
+    </template>
+  </NamesComponent>
 </template>
 
 <script>
@@ -34,6 +52,7 @@ import PopupComponent from './components/PopupComponent.vue';
 import OrderComponent from './components/OrderComponent.vue';
 import InputComponent from './components/InputComponent.vue';
 import CardComponent from './components/CardComponent.vue';
+import NamesComponent from './components/NamesComponent.vue'
 
 export default {
     name: "App",
@@ -46,6 +65,7 @@ export default {
       OrderComponent,
       InputComponent,
       CardComponent,
+      NamesComponent,
     },
 
     data: function() {

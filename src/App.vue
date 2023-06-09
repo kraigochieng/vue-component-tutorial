@@ -1,16 +1,28 @@
 <template>
+  <!--Props-->
   <h1>Props</h1>
   <GreetingMessage name="Kraig"/>
   <GreetingMessage :name="name"/>
   <ArticlePage title="bananas" :likes="4" :isPublished="true"/>
 
+  <!--Provide/Inject-->
   <h1>Provide/Inject</h1>
   <p>App username {{ name }}</p>
   <ComponentC />
+
+  <!--Component Events-->
   <h1>Component Events</h1>
   <button @click="showPopup = true">Open Popup</button>
   <PopupComponent v-show="showPopup" @closePopup="closePopup"/>
   <OrderComponent v-for="(order, index) in orders" :key="index" :id="order.id" :telephone_number="order.telephone_number" :description="order.description"></OrderComponent>
+  <InputComponent v-model="name"/>
+
+  <!--Slots-->
+  <h1>Slots</h1>
+  <CardComponent></CardComponent>
+  <CardComponent><h1>Content 1</h1></CardComponent>
+  <CardComponent><h2>Content 2</h2></CardComponent>
+  <CardComponent><InputComponent/></CardComponent>
 </template>
 
 <script>
@@ -20,6 +32,8 @@ import ArticlePage from './components/ArticlePage.vue';
 import ComponentC from './components/ComponentC.vue';
 import PopupComponent from './components/PopupComponent.vue';
 import OrderComponent from './components/OrderComponent.vue';
+import InputComponent from './components/InputComponent.vue';
+import CardComponent from './components/CardComponent.vue';
 
 export default {
     name: "App",
@@ -29,7 +43,9 @@ export default {
       ArticlePage,
       ComponentC,
       PopupComponent,
-      OrderComponent
+      OrderComponent,
+      InputComponent,
+      CardComponent,
     },
 
     data: function() {
@@ -40,14 +56,14 @@ export default {
 
         orders: [{
           id: '1',
-          telephone_number: 'Kraig',
-          description: 'Ochieng',
+          telephone_number: '0793562565',
+          description: '',
         },
 
         {
           id: '2',
-          telephone_number: '083662382',
-          description: 'Omondi',
+          telephone_number: '0735276327',
+          description: '',
         }
       ]
       }
@@ -74,7 +90,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
   margin-top: 60px;
 }
